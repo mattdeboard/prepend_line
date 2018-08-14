@@ -1,0 +1,10 @@
+[package]
+name = "prepend_line"
+version = "0.1.0"
+authors = ["Matt DeBoard <mdeboard@truecar.com>"]
+
+[dependencies]
+lazy_static = "*"
+mktemp = "*"
+regex = "*"
+wasm-bindgen = "0.2"
