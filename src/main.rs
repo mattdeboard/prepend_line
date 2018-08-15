@@ -50,9 +50,7 @@ fn main() -> io::Result<()> {
   let title = title_string(buffer);
 
   match line_is_flow_annotation(title) {
-    true => (),
-    false => prepend_file(new_file_head.as_bytes(), &file_path)?
+    true => Ok(()),
+    false => prepend_file(new_file_head.as_bytes(), &file_path)
   }
-
-  Ok(())
 }
