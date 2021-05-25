@@ -1,9 +1,14 @@
-#![feature(use_extern_macros)]
 extern crate mktemp;
 extern crate regex;
 use mktemp::Temp;
 use regex::Regex;
-use std::{env, fs, io, io::{BufRead, BufReader, Write}, fs::File, path::Path};
+use std::{
+  env, fs,
+  fs::File,
+  io,
+  io::{BufRead, BufReader, Write},
+  path::Path,
+};
 
 fn prepend_file<P: AsRef<Path>>(data: &[u8], file_path: &P) -> io::Result<()> {
   // Create a temporary file
@@ -24,7 +29,10 @@ fn prepend_file<P: AsRef<Path>>(data: &[u8], file_path: &P) -> io::Result<()> {
   Ok(())
 }
 
-fn title_string<R>(mut rdr: R) -> String where R: BufRead {
+fn title_string<R>(mut rdr: R) -> String
+where
+  R: BufRead,
+{
   let mut first_line = String::new();
   rdr.read_line(&mut first_line).expect("Unable to read line");
   first_line
@@ -49,6 +57,6 @@ fn main() -> io::Result<()> {
 
   match line_is_flow_annotation(title, ptn) {
     true => Ok(()),
-    false => prepend_file(new_file_head.as_bytes(), &file_path)
+    false => prepend_file(new_file_head.as_bytes(), &file_path),
   }
 }
